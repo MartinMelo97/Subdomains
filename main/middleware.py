@@ -11,7 +11,7 @@ class SubdomainTiendaMiddleware(MiddlewareMixin):
 	def process_request(self, request):
 		host_parts = request.get_host().split('.') #nos traemos la url y la seccionamos
 		print(request.get_host())
-		if len(host_parts) > 1 and host_parts[0] != "www":
+		if len(host_parts) > 2 and host_parts[0] != "www":
 			tienda = get_object_or_404(Tienda, slug=host_parts[0])
 			print(tienda.nombre)
 			tienda_url = reverse('detail', args=[tienda.slug])
